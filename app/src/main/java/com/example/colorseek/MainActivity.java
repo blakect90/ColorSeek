@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         sb_j_Green = findViewById(R.id.sb_v_Green);
 
         setSeekBarListeners();
+        setBackGroundColor();
     }
 
     public void setSeekBarListeners()
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 sb_j_Red.setProgress(progress);
+                setBackGroundColor();
 
                 //Log.d("RED", String.valueOf(progress));
             }
@@ -54,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 sb_j_Blue.setProgress(progress);
-                Log.d("BLUE", String.valueOf(progress));
+//                Log.d("BLUE", String.valueOf(progress));
+                setBackGroundColor();
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -67,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 sb_j_Green.setProgress(progress);
-                Log.d("GREEN", String.valueOf(progress));
+//                Log.d("GREEN", String.valueOf(progress));
+                setBackGroundColor();
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -76,7 +80,14 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+    }
 
+    public void setBackGroundColor()
+    {
+        int red = sb_j_Red.getProgress();
+        int green = sb_j_Green.getProgress();
+        int blue = sb_j_Blue.getProgress();
 
+        findViewById(R.id.main).setBackgroundColor(android.graphics.Color.rgb(red, green, blue));
     }
 }
