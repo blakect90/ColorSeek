@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         setSeekBarListeners();
         setBackGroundColor();
     }
-
+    //ALL SEEKBAR LISTENERS========================================================================
     public void setSeekBarListeners()
     {
         sb_j_Red.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -109,25 +109,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    //==============================================================================================
     public void setBackGroundColor()
     {
         int red = sb_j_Red.getProgress();
         int green = sb_j_Green.getProgress();
         int blue = sb_j_Blue.getProgress();
 
+        //Set the background color
         findViewById(R.id.main).setBackgroundColor(android.graphics.Color.rgb(red, green, blue));
-        changeTextColor(red, green, blue);
+
+        //get luminance to determine text color
+        double luminance = calcLuminance(red, green, blue);
+        //change text color
+        changeTextColor(luminance);
     }
 
-    public void changeTextColor(int r, int g, int b)
+    public double calcLuminance(int r, int g, int b)
     {
-        int red = r;
-        int green = g;
-        int blue = b;
-
-        double luminance = (0.299 * red) + (0.587 * green) + (0.114 * blue);
-
+        //calculate relative luminance dynamically
+        double lum = (0.299 * r) + (0.587 * g) + (0.114 * b);
+        //Log.d("LUMINANCE", String.valueOf(lum));
+        return lum;
+    }
+    public void changeTextColor(double luminance)
+    {
+        //text color changes based on relative luminance value
         if (luminance < 128)
         {
             tv_j_rVal.setTextColor(android.graphics.Color.WHITE);
