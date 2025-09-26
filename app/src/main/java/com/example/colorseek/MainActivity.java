@@ -2,6 +2,7 @@ package com.example.colorseek;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -19,6 +20,14 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_j_rVal;
     TextView tv_j_gVal;
     TextView tv_j_bVal;
+    TextView tv_j_hex;
+    TextView lbl_v_header;
+    TextView lbl_v_red;
+    TextView lbl_v_green;
+    TextView lbl_v_blue;
+    TextView lbl_v_hex;
+
+//    ListView lv_j_savedColors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
         tv_j_rVal = findViewById(R.id.tv_v_rVal);
         tv_j_gVal = findViewById(R.id.tv_v_gVal);
         tv_j_bVal = findViewById(R.id.tv_v_bVal);
+        tv_j_hex = findViewById(R.id.tv_v_hex);
+
+        lbl_v_header = findViewById(R.id.lbl_v_header);
+        lbl_v_red = findViewById(R.id.lbl_v_red);
+        lbl_v_green = findViewById(R.id.lbl_v_green);
+        lbl_v_blue = findViewById(R.id.lbl_v_blue);
+        lbl_v_hex = findViewById(R.id.lbl_v_hex);
+
+//        lv_j_savedColors = findViewById(R.id.lv_v_savedColors);
 
         setSeekBarListeners();
         setBackGroundColor();
@@ -99,5 +117,39 @@ public class MainActivity extends AppCompatActivity {
         int blue = sb_j_Blue.getProgress();
 
         findViewById(R.id.main).setBackgroundColor(android.graphics.Color.rgb(red, green, blue));
+        changeTextColor(red, green, blue);
+    }
+
+    public void changeTextColor(int r, int g, int b)
+    {
+        int red = r;
+        int green = g;
+        int blue = b;
+
+        double luminance = (0.299 * red) + (0.587 * green) + (0.114 * blue);
+
+        if (luminance < 128)
+        {
+            tv_j_rVal.setTextColor(android.graphics.Color.WHITE);
+            tv_j_gVal.setTextColor(android.graphics.Color.WHITE);
+            tv_j_bVal.setTextColor(android.graphics.Color.WHITE);
+            tv_j_hex.setTextColor(android.graphics.Color.WHITE);
+            lbl_v_header.setTextColor(android.graphics.Color.WHITE);
+            lbl_v_red.setTextColor(android.graphics.Color.WHITE);
+            lbl_v_green.setTextColor(android.graphics.Color.WHITE);
+            lbl_v_blue.setTextColor(android.graphics.Color.WHITE);
+        }
+        else
+        {
+            tv_j_rVal.setTextColor(android.graphics.Color.BLACK);
+            tv_j_gVal.setTextColor(android.graphics.Color.BLACK);
+            tv_j_bVal.setTextColor(android.graphics.Color.BLACK);
+            tv_j_hex.setTextColor(android.graphics.Color.BLACK);
+            lbl_v_header.setTextColor(android.graphics.Color.BLACK);
+            lbl_v_red.setTextColor(android.graphics.Color.BLACK);
+            lbl_v_green.setTextColor(android.graphics.Color.BLACK);
+            lbl_v_blue.setTextColor(android.graphics.Color.BLACK);
+        }
+
     }
 }

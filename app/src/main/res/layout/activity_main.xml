@@ -10,15 +10,16 @@
     tools:layout_editor_absoluteY="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="408dp"
-        android:layout_height="288dp"
+        android:id="@+id/constraintLayout3"
+        android:layout_width="401dp"
+        android:layout_height="331dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/lbl_v_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -41,7 +42,7 @@
             android:progressTint="#F60020"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintTop_toBottomOf="@+id/lbl_v_header" />
 
         <SeekBar
             android:id="@+id/sb_v_Green"
@@ -68,31 +69,31 @@
             app:layout_constraintTop_toBottomOf="@+id/sb_v_Green" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/lbl_v_red"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="Red"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/sb_v_Red"
-            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="@+id/lbl_v_green"
             app:layout_constraintHorizontal_bias="0.48"
-            app:layout_constraintStart_toStartOf="@+id/textView2" />
+            app:layout_constraintStart_toStartOf="@+id/lbl_v_green" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/lbl_v_green"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="Green"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/sb_v_Green"
-            app:layout_constraintEnd_toEndOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="@+id/lbl_v_blue"
             app:layout_constraintHorizontal_bias="0.483"
-            app:layout_constraintStart_toStartOf="@+id/textView3" />
+            app:layout_constraintStart_toStartOf="@+id/lbl_v_blue" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/lbl_v_blue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
@@ -108,12 +109,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="9dp"
-            android:text="TextView"
+            android:text="0"
             app:layout_constraintBottom_toTopOf="@+id/sb_v_Red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.055"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/lbl_v_red"
+            app:layout_constraintTop_toTopOf="@+id/lbl_v_red"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
@@ -121,23 +122,57 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="TextView"
+            android:text="0"
             app:layout_constraintBottom_toTopOf="@+id/sb_v_Green"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.051"
-            app:layout_constraintStart_toEndOf="@+id/textView2" />
+            app:layout_constraintStart_toEndOf="@+id/lbl_v_green" />
 
         <TextView
             android:id="@+id/tv_v_bVal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:text="TextView"
+            android:text="0"
             app:layout_constraintBottom_toTopOf="@+id/sb_v_Blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.042"
-            app:layout_constraintStart_toEndOf="@+id/textView3" />
+            app:layout_constraintStart_toEndOf="@+id/lbl_v_blue" />
+
+        <TextView
+            android:id="@+id/lbl_v_hex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="16dp"
+            android:text="HEX Value: "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sb_v_Blue"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_v_hex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.034"
+            app:layout_constraintStart_toEndOf="@+id/lbl_v_hex"
+            tools:layout_editor_absoluteY="297dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btn_v_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="SAVE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
