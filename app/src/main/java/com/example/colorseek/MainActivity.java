@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
             lbl_v_red.setTextColor(android.graphics.Color.WHITE);
             lbl_v_green.setTextColor(android.graphics.Color.WHITE);
             lbl_v_blue.setTextColor(android.graphics.Color.WHITE);
+            lbl_v_hex.setTextColor(android.graphics.Color.WHITE);
         }
         else
         {
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
             lbl_v_red.setTextColor(android.graphics.Color.BLACK);
             lbl_v_green.setTextColor(android.graphics.Color.BLACK);
             lbl_v_blue.setTextColor(android.graphics.Color.BLACK);
+            lbl_v_hex.setTextColor(android.graphics.Color.BLACK);
         }
 
     }
