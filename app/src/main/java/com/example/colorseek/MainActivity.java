@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 sb_j_Red.setProgress(progress);
                 setBackGroundColor();
                 tv_j_rVal.setText(String.valueOf(progress));
-
                 //Log.d("RED", String.valueOf(progress));
             }
             @Override
