@@ -3,6 +3,7 @@ package com.example.colorseek;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
     SeekBar sb_j_Red;
     SeekBar sb_j_Blue;
     SeekBar sb_j_Green;
+    TextView tv_j_rVal;
+    TextView tv_j_gVal;
+    TextView tv_j_bVal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
         sb_j_Blue = findViewById(R.id.sb_v_Blue);
         sb_j_Green = findViewById(R.id.sb_v_Green);
 
+        tv_j_rVal = findViewById(R.id.tv_v_rVal);
+        tv_j_gVal = findViewById(R.id.tv_v_gVal);
+        tv_j_bVal = findViewById(R.id.tv_v_bVal);
+
         setSeekBarListeners();
         setBackGroundColor();
     }
@@ -42,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 sb_j_Red.setProgress(progress);
                 setBackGroundColor();
+                tv_j_rVal.setText(String.valueOf(progress));
 
                 //Log.d("RED", String.valueOf(progress));
             }
@@ -58,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 sb_j_Blue.setProgress(progress);
 //                Log.d("BLUE", String.valueOf(progress));
                 setBackGroundColor();
+                tv_j_bVal.setText(String.valueOf(progress));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -72,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 sb_j_Green.setProgress(progress);
 //                Log.d("GREEN", String.valueOf(progress));
                 setBackGroundColor();
+                tv_j_gVal.setText(String.valueOf(progress));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
