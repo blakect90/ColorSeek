@@ -1,9 +1,11 @@
 package com.example.colorseek;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class ColorInfo
 {
+    public static LinkedList<ColorInfo> savedColor;
     private int red;
     private int green;
     private int blue;
@@ -38,12 +40,11 @@ public class ColorInfo
     public void setHex(String hex) {this.hex = hex;}
     //==============================================================================================
 
-//    static class savedColor
-//    {
-//        static ArrayList<String> savedColor = new ArrayList<>();
-//        public static String savedColorAt(int i) {return savedColor.get(i);}
-//        public static void addSavedColor
-//    }
+    static class savedColor
+    {
+        static ArrayList<String> savedColor = new ArrayList<>();
+        public static String savedColorAt(int i) {return savedColor.get(i);}
+    }
 }
 
 

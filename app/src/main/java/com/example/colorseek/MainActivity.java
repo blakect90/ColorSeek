@@ -2,6 +2,8 @@ package com.example.colorseek;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -26,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
     TextView lbl_j_green;
     TextView lbl_j_blue;
     TextView lbl_j_hex;
-
-//    ListView lv_j_savedColors;
+    Button btn_j_save;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +56,11 @@ public class MainActivity extends AppCompatActivity {
         lbl_j_blue = findViewById(R.id.lbl_v_blue);
         lbl_j_hex = findViewById(R.id.lbl_v_hex);
 
-//        lv_j_savedColors = findViewById(R.id.lv_v_savedColors);
+        btn_j_save = findViewById(R.id.btn_v_save);
 
         setSeekBarListeners();
         setBackGroundColor();
+        setOnClickListener();
     }
     //ALL SEEKBAR LISTENERS========================================================================
     public void setSeekBarListeners()
@@ -168,5 +170,24 @@ public class MainActivity extends AppCompatActivity {
             lbl_j_hex.setTextColor(android.graphics.Color.BLACK);
         }
 
+    }
+
+    public void setOnClickListener()
+    {
+        btn_j_save.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                ColorInfo colorInfo = new ColorInfo();
+                colorInfo.setRed(sb_j_Red.getProgress());
+                colorInfo.setGreen(sb_j_Green.getProgress());
+                colorInfo.setBlue(sb_j_Blue.getProgress());
+                colorInfo.setLuminance(calcLuminance(sb_j_Red.getProgress(), sb_j_Green.getProgress(), sb_j_Blue.getProgress()));
+                colorInfo.setHex(tv_j_hex.getText().toString());
+
+//                Log.d("COLORINFO", colorInfo.At;
+            }
+
+        });
     }
 }
