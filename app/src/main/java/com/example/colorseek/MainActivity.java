@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_j_gVal;
     TextView tv_j_bVal;
     TextView tv_j_hex;
-    TextView lbl_v_header;
-    TextView lbl_v_red;
-    TextView lbl_v_green;
-    TextView lbl_v_blue;
-    TextView lbl_v_hex;
+    TextView lbl_j_header;
+    TextView lbl_j_red;
+    TextView lbl_j_green;
+    TextView lbl_j_blue;
+    TextView lbl_j_hex;
 
 //    ListView lv_j_savedColors;
 
@@ -49,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
         tv_j_bVal = findViewById(R.id.tv_v_bVal);
         tv_j_hex = findViewById(R.id.tv_v_hex);
 
-        lbl_v_header = findViewById(R.id.lbl_v_header);
-        lbl_v_red = findViewById(R.id.lbl_v_red);
-        lbl_v_green = findViewById(R.id.lbl_v_green);
-        lbl_v_blue = findViewById(R.id.lbl_v_blue);
-        lbl_v_hex = findViewById(R.id.lbl_v_hex);
+        lbl_j_header = findViewById(R.id.lbl_v_header);
+        lbl_j_red = findViewById(R.id.lbl_v_red);
+        lbl_j_green = findViewById(R.id.lbl_v_green);
+        lbl_j_blue = findViewById(R.id.lbl_v_blue);
+        lbl_j_hex = findViewById(R.id.lbl_v_hex);
 
 //        lv_j_savedColors = findViewById(R.id.lv_v_savedColors);
 
@@ -118,13 +118,21 @@ public class MainActivity extends AppCompatActivity {
 
         //Set the background color
         findViewById(R.id.main).setBackgroundColor(android.graphics.Color.rgb(red, green, blue));
-
         //get luminance to determine text color
         double luminance = calcLuminance(red, green, blue);
         //change text color
         changeTextColor(luminance);
+        //set hex code
+        setHexCode(red, green, blue);
     }
+    public void setHexCode(int r, int g, int b)
+    {
+        String rHex = String.format("%02X", r);
+        String gHex = String.format("%02X", g);
+        String bHex = String.format("%02X", b);
 
+        tv_j_hex.setText("#" + rHex + gHex + bHex);
+    }
     public double calcLuminance(int r, int g, int b)
     {
         //calculate relative luminance dynamically
@@ -141,11 +149,11 @@ public class MainActivity extends AppCompatActivity {
             tv_j_gVal.setTextColor(android.graphics.Color.WHITE);
             tv_j_bVal.setTextColor(android.graphics.Color.WHITE);
             tv_j_hex.setTextColor(android.graphics.Color.WHITE);
-            lbl_v_header.setTextColor(android.graphics.Color.WHITE);
-            lbl_v_red.setTextColor(android.graphics.Color.WHITE);
-            lbl_v_green.setTextColor(android.graphics.Color.WHITE);
-            lbl_v_blue.setTextColor(android.graphics.Color.WHITE);
-            lbl_v_hex.setTextColor(android.graphics.Color.WHITE);
+            lbl_j_header.setTextColor(android.graphics.Color.WHITE);
+            lbl_j_red.setTextColor(android.graphics.Color.WHITE);
+            lbl_j_green.setTextColor(android.graphics.Color.WHITE);
+            lbl_j_blue.setTextColor(android.graphics.Color.WHITE);
+            lbl_j_hex.setTextColor(android.graphics.Color.WHITE);
         }
         else
         {
@@ -153,11 +161,11 @@ public class MainActivity extends AppCompatActivity {
             tv_j_gVal.setTextColor(android.graphics.Color.BLACK);
             tv_j_bVal.setTextColor(android.graphics.Color.BLACK);
             tv_j_hex.setTextColor(android.graphics.Color.BLACK);
-            lbl_v_header.setTextColor(android.graphics.Color.BLACK);
-            lbl_v_red.setTextColor(android.graphics.Color.BLACK);
-            lbl_v_green.setTextColor(android.graphics.Color.BLACK);
-            lbl_v_blue.setTextColor(android.graphics.Color.BLACK);
-            lbl_v_hex.setTextColor(android.graphics.Color.BLACK);
+            lbl_j_header.setTextColor(android.graphics.Color.BLACK);
+            lbl_j_red.setTextColor(android.graphics.Color.BLACK);
+            lbl_j_green.setTextColor(android.graphics.Color.BLACK);
+            lbl_j_blue.setTextColor(android.graphics.Color.BLACK);
+            lbl_j_hex.setTextColor(android.graphics.Color.BLACK);
         }
 
     }

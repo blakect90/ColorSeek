@@ -38,12 +38,12 @@ public class ColorInfo
     public void setHex(String hex) {this.hex = hex;}
     //==============================================================================================
 
-    static class savedColor
-    {
-        static ArrayList<String> savedColor = new ArrayList<>();
-        public static String savedColorAt(int i) {return savedColor.get(i);}
-        public static void addSavedColor
-    }
+//    static class savedColor
+//    {
+//        static ArrayList<String> savedColor = new ArrayList<>();
+//        public static String savedColorAt(int i) {return savedColor.get(i);}
+//        public static void addSavedColor
+//    }
 }
 
 
