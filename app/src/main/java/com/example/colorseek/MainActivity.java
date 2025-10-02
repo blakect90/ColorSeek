@@ -14,6 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     SeekBar sb_j_Red;
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     TextView lbl_j_blue;
     TextView lbl_j_hex;
     Button btn_j_save;
+    ListView lv_j_savedColors;
+
+    private ArrayList<ColorInfo> savedColors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+//GUI Connections==================================================================================
         sb_j_Red = findViewById(R.id.sb_v_Red);
         sb_j_Blue = findViewById(R.id.sb_v_Blue);
         sb_j_Green = findViewById(R.id.sb_v_Green);
@@ -57,11 +62,26 @@ public class MainActivity extends AppCompatActivity {
         lbl_j_hex = findViewById(R.id.lbl_v_hex);
 
         btn_j_save = findViewById(R.id.btn_v_save);
-
+        lv_j_savedColors = findViewById(R.id.lv_v_savedColors);
+//=================================================================================================
         setSeekBarListeners();
         setBackGroundColor();
         setOnClickListener();
+
+        ColorInfo colorInfo = new ColorInfo();
+        colorInfo.setRed(255);
+        colorInfo.setGreen(100);
+        colorInfo.setBlue(0);
+        colorInfo.setHex("#FF6400");
+
+        System.out.println(colorInfo.getRed());
+        System.out.println(colorInfo.getGreen());
+        System.out.println(colorInfo.getBlue());
+        System.out.println(colorInfo.getHex());
+
+
     }
+
     //ALL SEEKBAR LISTENERS========================================================================
     public void setSeekBarListeners()
     {
@@ -135,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
         tv_j_hex.setText("#" + rHex + gHex + bHex);
     }
+    //Calculate relative luminance to approximate the lightness/darkness of background color
     public double calcLuminance(int r, int g, int b)
     {
         //calculate relative luminance dynamically
@@ -142,9 +163,9 @@ public class MainActivity extends AppCompatActivity {
         //Log.d("LUMINANCE", String.valueOf(lum));
         return lum;
     }
+    //Change text color based on relative luminance value
     public void changeTextColor(double luminance)
     {
-        //text color changes based on relative luminance value
         if (luminance < 128)
         {
             tv_j_rVal.setTextColor(android.graphics.Color.WHITE);
@@ -182,10 +203,8 @@ public class MainActivity extends AppCompatActivity {
                 colorInfo.setRed(sb_j_Red.getProgress());
                 colorInfo.setGreen(sb_j_Green.getProgress());
                 colorInfo.setBlue(sb_j_Blue.getProgress());
-                colorInfo.setLuminance(calcLuminance(sb_j_Red.getProgress(), sb_j_Green.getProgress(), sb_j_Blue.getProgress()));
                 colorInfo.setHex(tv_j_hex.getText().toString());
 
-//                Log.d("COLORINFO", colorInfo.At;
             }
 
         });

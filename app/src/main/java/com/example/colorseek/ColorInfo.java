@@ -1,30 +1,29 @@
 package com.example.colorseek;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class ColorInfo
+public class ColorInfo implements Serializable
 {
-    public static LinkedList<ColorInfo> savedColor;
+//    public static LinkedList<ColorInfo> savedColor;
     private int red;
     private int green;
     private int blue;
-    private double luminance;
     private String hex;
 
-    //default constructor
+    //DEFAULT constructor
     public ColorInfo()
     {
 
     }
 
-    //overloaded constructor
-    public ColorInfo(int r, int g, int b, double l, String h)
+    //OVERLOADED constructor
+    public ColorInfo(int r, int g, int b, String h)
     {
         red = r;
         green = g;
         blue = b;
-        luminance = l;
         hex = h;
     }
     //GETTERS AND SETTERS==============================================================================
@@ -34,17 +33,9 @@ public class ColorInfo
     public void setGreen(int green) {this.green = green;}
     public int getBlue() {return blue;}
     public void setBlue(int blue) {this.blue = blue;}
-    public double getLuminance() {return luminance;}
-    public void setLuminance(double luminance) {this.luminance = luminance;}
     public String getHex() {return hex;}
     public void setHex(String hex) {this.hex = hex;}
     //==============================================================================================
-
-    static class savedColor
-    {
-        static ArrayList<String> savedColor = new ArrayList<>();
-        public static String savedColorAt(int i) {return savedColor.get(i);}
-    }
 }
 
 
