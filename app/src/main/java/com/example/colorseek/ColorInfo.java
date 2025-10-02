@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class ColorInfo implements Serializable
 {
-//    public static LinkedList<ColorInfo> savedColor;
     private int red;
     private int green;
     private int blue;

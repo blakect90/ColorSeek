@@ -67,18 +67,6 @@ public class MainActivity extends AppCompatActivity {
         setBackGroundColor();
         setOnClickListener();
 
-        ColorInfo colorInfo = new ColorInfo();
-        colorInfo.setRed(255);
-        colorInfo.setGreen(100);
-        colorInfo.setBlue(0);
-        colorInfo.setHex("#FF6400");
-
-        System.out.println(colorInfo.getRed());
-        System.out.println(colorInfo.getGreen());
-        System.out.println(colorInfo.getBlue());
-        System.out.println(colorInfo.getHex());
-
-
     }
 
     //ALL SEEKBAR LISTENERS========================================================================
@@ -87,10 +75,8 @@ public class MainActivity extends AppCompatActivity {
         sb_j_Red.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                sb_j_Red.setProgress(progress);
                 setBackGroundColor();
                 tv_j_rVal.setText(String.valueOf(progress));
-                //Log.d("RED", String.valueOf(progress));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -102,8 +88,6 @@ public class MainActivity extends AppCompatActivity {
         sb_j_Blue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                sb_j_Blue.setProgress(progress);
-//                Log.d("BLUE", String.valueOf(progress));
                 setBackGroundColor();
                 tv_j_bVal.setText(String.valueOf(progress));
             }
@@ -117,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
         sb_j_Green.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                sb_j_Green.setProgress(progress);
-//                Log.d("GREEN", String.valueOf(progress));
                 setBackGroundColor();
                 tv_j_gVal.setText(String.valueOf(progress));
             }
@@ -197,13 +179,14 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
-                saveColors();
+                saveColor();
+                resetSeekBars();
             }
 
         });
     }
 
-    public void saveColors()
+    public void saveColor()
     {
 
         ColorInfo colorInfo = new ColorInfo();
@@ -222,5 +205,12 @@ public class MainActivity extends AppCompatActivity {
             Log.d("COLOR", String.valueOf(colorList.get(i).getBlue()));
         }
 
+    }
+
+    public void resetSeekBars()
+    {
+        sb_j_Red.setProgress(0);
+        sb_j_Green.setProgress(0);
+        sb_j_Blue.setProgress(0);
     }
 }
