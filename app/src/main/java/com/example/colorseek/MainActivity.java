@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TextView lbl_j_hex;
     Button btn_j_save;
     ListView lv_j_savedColors;
-
-    private ArrayList<ColorInfo> savedColors;
+    ArrayList<ColorInfo> colorList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         sb_j_Red.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                sb_j_Red.setProgress(progress);
+//                sb_j_Red.setProgress(progress);
                 setBackGroundColor();
                 tv_j_rVal.setText(String.valueOf(progress));
                 //Log.d("RED", String.valueOf(progress));
@@ -103,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         sb_j_Blue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                sb_j_Blue.setProgress(progress);
+//                sb_j_Blue.setProgress(progress);
 //                Log.d("BLUE", String.valueOf(progress));
                 setBackGroundColor();
                 tv_j_bVal.setText(String.valueOf(progress));
@@ -118,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         sb_j_Green.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                sb_j_Green.setProgress(progress);
+//                sb_j_Green.setProgress(progress);
 //                Log.d("GREEN", String.valueOf(progress));
                 setBackGroundColor();
                 tv_j_gVal.setText(String.valueOf(progress));
@@ -152,16 +151,15 @@ public class MainActivity extends AppCompatActivity {
         String rHex = String.format("%02X", r);
         String gHex = String.format("%02X", g);
         String bHex = String.format("%02X", b);
-
-        tv_j_hex.setText("#" + rHex + gHex + bHex);
+        String hex = "#" + rHex + gHex + bHex;
+        tv_j_hex.setText(hex);
     }
     //Calculate relative luminance to approximate the lightness/darkness of background color
     public double calcLuminance(int r, int g, int b)
     {
         //calculate relative luminance dynamically
-        double lum = (0.299 * r) + (0.587 * g) + (0.114 * b);
         //Log.d("LUMINANCE", String.valueOf(lum));
-        return lum;
+        return (0.299 * r) + (0.587 * g) + (0.114 * b);
     }
     //Change text color based on relative luminance value
     public void changeTextColor(double luminance)
@@ -199,14 +197,30 @@ public class MainActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
-                ColorInfo colorInfo = new ColorInfo();
-                colorInfo.setRed(sb_j_Red.getProgress());
-                colorInfo.setGreen(sb_j_Green.getProgress());
-                colorInfo.setBlue(sb_j_Blue.getProgress());
-                colorInfo.setHex(tv_j_hex.getText().toString());
-
+                saveColors();
             }
 
         });
+    }
+
+    public void saveColors()
+    {
+
+        ColorInfo colorInfo = new ColorInfo();
+        colorInfo.setRed(sb_j_Red.getProgress());
+        colorInfo.setGreen(sb_j_Green.getProgress());
+        colorInfo.setBlue(sb_j_Blue.getProgress());
+        colorInfo.setHex(tv_j_hex.getText().toString());
+        colorList.add(colorInfo);
+
+        //+*+*+*+*+*+*+*+*+*+*+**TEST SAVE BUTTON+*+*+*+*+*+*+*+*+*+*+*+
+        for (int i = 0; i < colorList.size(); i++)
+        {
+            Log.d("COLOR", colorList.get(i).getHex());
+            Log.d("COLOR", String.valueOf(colorList.get(i).getRed()));
+            Log.d("COLOR", String.valueOf(colorList.get(i).getGreen()));
+            Log.d("COLOR", String.valueOf(colorList.get(i).getBlue()));
+        }
+
     }
 }
