@@ -9,7 +9,7 @@ public class ColorInfo implements Serializable
     private int blue;
     private String hex;
 
-    //GETTERS AND SETTERS==============================================================================
+    //GETTERS AND SETTERS===========================================================================
     public int getRed() {return red;}
     public void setRed(int red) {this.red = red;}
     public int getGreen() {return green;}

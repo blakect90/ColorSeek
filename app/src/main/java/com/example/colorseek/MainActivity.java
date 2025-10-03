@@ -3,6 +3,7 @@ package com.example.colorseek;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -62,13 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
         btn_j_save = findViewById(R.id.btn_v_save);
         lv_j_savedColors = findViewById(R.id.lv_v_savedColors);
-//=================================================================================================
+
+        //Custom Adapter TEST=======================================================================
+        //String[] test = {"red", "blue", "green"};
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,test);
+        //lv_j_savedColors.setAdapter(adapter);
+        //==========================================================================================
+
         setSeekBarListeners();
         setBackGroundColor();
         setOnClickListener();
-
     }
-
     //ALL SEEKBAR LISTENERS========================================================================
     public void setSeekBarListeners()
     {
@@ -139,8 +144,6 @@ public class MainActivity extends AppCompatActivity {
     //Calculate relative luminance to approximate the lightness/darkness of background color
     public double calcLuminance(int r, int g, int b)
     {
-        //calculate relative luminance dynamically
-        //Log.d("LUMINANCE", String.valueOf(lum));
         return (0.299 * r) + (0.587 * g) + (0.114 * b);
     }
     //Change text color based on relative luminance value
@@ -170,9 +173,7 @@ public class MainActivity extends AppCompatActivity {
             lbl_j_blue.setTextColor(android.graphics.Color.BLACK);
             lbl_j_hex.setTextColor(android.graphics.Color.BLACK);
         }
-
     }
-
     public void setOnClickListener()
     {
         btn_j_save.setOnClickListener(new View.OnClickListener()
@@ -185,10 +186,8 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
-
     public void saveColor()
     {
-
         ColorInfo colorInfo = new ColorInfo();
         colorInfo.setRed(sb_j_Red.getProgress());
         colorInfo.setGreen(sb_j_Green.getProgress());
@@ -204,9 +203,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("COLOR", String.valueOf(colorList.get(i).getGreen()));
             Log.d("COLOR", String.valueOf(colorList.get(i).getBlue()));
         }
-
     }
-
     public void resetSeekBars()
     {
         sb_j_Red.setProgress(0);
