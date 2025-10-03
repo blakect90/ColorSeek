@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     ListView lv_j_savedColors;
     ArrayList<ColorInfo> colorList = new ArrayList<>();
 
+    ColorListAdapter clAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,19 +75,22 @@ public class MainActivity extends AppCompatActivity {
         setSeekBarListeners();
         setBackGroundColor();
         setOnClickListener();
+        fillListView();
     }
+
     //ALL SEEKBAR LISTENERS========================================================================
-    public void setSeekBarListeners()
-    {
+    public void setSeekBarListeners() {
         sb_j_Red.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 setBackGroundColor();
                 tv_j_rVal.setText(String.valueOf(progress));
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
@@ -96,9 +101,11 @@ public class MainActivity extends AppCompatActivity {
                 setBackGroundColor();
                 tv_j_bVal.setText(String.valueOf(progress));
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
@@ -109,17 +116,19 @@ public class MainActivity extends AppCompatActivity {
                 setBackGroundColor();
                 tv_j_gVal.setText(String.valueOf(progress));
             }
+
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
     }
+
     //==============================================================================================
-    public void setBackGroundColor()
-    {
+    public void setBackGroundColor() {
         int red = sb_j_Red.getProgress();
         int green = sb_j_Green.getProgress();
         int blue = sb_j_Blue.getProgress();
@@ -133,24 +142,23 @@ public class MainActivity extends AppCompatActivity {
         //set hex code
         setHexCode(red, green, blue);
     }
-    public void setHexCode(int r, int g, int b)
-    {
+
+    public void setHexCode(int r, int g, int b) {
         String rHex = String.format("%02X", r);
         String gHex = String.format("%02X", g);
         String bHex = String.format("%02X", b);
         String hex = "#" + rHex + gHex + bHex;
         tv_j_hex.setText(hex);
     }
+
     //Calculate relative luminance to approximate the lightness/darkness of background color
-    public double calcLuminance(int r, int g, int b)
-    {
+    public double calcLuminance(int r, int g, int b) {
         return (0.299 * r) + (0.587 * g) + (0.114 * b);
     }
+
     //Change text color based on relative luminance value
-    public void changeTextColor(double luminance)
-    {
-        if (luminance < 128)
-        {
+    public void changeTextColor(double luminance) {
+        if (luminance < 128) {
             tv_j_rVal.setTextColor(android.graphics.Color.WHITE);
             tv_j_gVal.setTextColor(android.graphics.Color.WHITE);
             tv_j_bVal.setTextColor(android.graphics.Color.WHITE);
@@ -160,9 +168,7 @@ public class MainActivity extends AppCompatActivity {
             lbl_j_green.setTextColor(android.graphics.Color.WHITE);
             lbl_j_blue.setTextColor(android.graphics.Color.WHITE);
             lbl_j_hex.setTextColor(android.graphics.Color.WHITE);
-        }
-        else
-        {
+        } else {
             tv_j_rVal.setTextColor(android.graphics.Color.BLACK);
             tv_j_gVal.setTextColor(android.graphics.Color.BLACK);
             tv_j_bVal.setTextColor(android.graphics.Color.BLACK);
@@ -174,20 +180,20 @@ public class MainActivity extends AppCompatActivity {
             lbl_j_hex.setTextColor(android.graphics.Color.BLACK);
         }
     }
-    public void setOnClickListener()
-    {
-        btn_j_save.setOnClickListener(new View.OnClickListener()
-        {
+
+    public void setOnClickListener() {
+        btn_j_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveColor();
                 resetSeekBars();
+                fillListView();
             }
 
         });
     }
-    public void saveColor()
-    {
+
+    public void saveColor() {
         ColorInfo colorInfo = new ColorInfo();
         colorInfo.setRed(sb_j_Red.getProgress());
         colorInfo.setGreen(sb_j_Green.getProgress());
@@ -196,18 +202,23 @@ public class MainActivity extends AppCompatActivity {
         colorList.add(colorInfo);
 
         //+*+*+*+*+*+*+*+*+*+*+**TEST SAVE BUTTON+*+*+*+*+*+*+*+*+*+*+*+
-        for (int i = 0; i < colorList.size(); i++)
-        {
+        for (int i = 0; i < colorList.size(); i++) {
             Log.d("COLOR", colorList.get(i).getHex());
             Log.d("COLOR", String.valueOf(colorList.get(i).getRed()));
             Log.d("COLOR", String.valueOf(colorList.get(i).getGreen()));
             Log.d("COLOR", String.valueOf(colorList.get(i).getBlue()));
         }
     }
-    public void resetSeekBars()
-    {
+
+    public void resetSeekBars() {
         sb_j_Red.setProgress(0);
         sb_j_Green.setProgress(0);
         sb_j_Blue.setProgress(0);
+    }
+
+    private void fillListView()
+    {
+        clAdapter = new ColorListAdapter(this, colorList);
+        lv_j_savedColors.setAdapter(clAdapter);
     }
 }
