@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         setBackGroundColor();
         setOnClickListener();
         fillListView();
+        setOnItemClickListener();
     }
 
     //ALL SEEKBAR LISTENERS========================================================================
@@ -128,6 +129,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //==============================================================================================
+
+    public void setOnItemClickListener()
+    {
+        lv_j_savedColors.setOnItemClickListener((parent, view, position, id) -> {
+
+            ColorInfo selectedColor = colorList.get(position);
+
+            sb_j_Red.setProgress(selectedColor.getRed());
+            sb_j_Green.setProgress(selectedColor.getGreen());
+            sb_j_Blue.setProgress(selectedColor.getBlue());
+        });
+    }
     public void setBackGroundColor() {
         int red = sb_j_Red.getProgress();
         int green = sb_j_Green.getProgress();
