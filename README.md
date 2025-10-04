@@ -20,8 +20,10 @@ positions as well as display the background color and it's corresponding RGB and
 
 CODING ISSUES:
 
-Overall this project went relatively smoothly. The GUI and the seekbar functionality were easy to
-set up and event the changing background colors and text colors were relatively straightforward. 
+Overall this project went relatively smoothly and I've included all the required functionality. 
+The GUI and the seekbar functionality were easy to set up and event the changing background colors 
+and text colors were relatively straightforward. 
+
 The hardest part of this stage of the project was figuring out how to change the text colors with
 the background and figuring out the hexidecimal values. It only took some quick research to find 
 formulas for calculating the HEX values from the RGB values and implementing that into a function.
