@@ -16,6 +16,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+//  NAME: Blake Taylor
+//  COURSE: CIS183
+//  HOMEWORK02
+//  DESCRIPTION: This is a simple application that allows the user to select a color by sliding three
+//  different seekbars corresponding to Red, Green and Blue color values. As the user slides each seek
+//  bar the background changes color accordingly displaying the selected color in both RGB and
+//  HEXIDECIMAL values. The user can also save colors to a list and return to them by clicking on the
+//  saved colors in the listview.
+//-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 public class MainActivity extends AppCompatActivity {
 
@@ -129,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //==============================================================================================
-
+    //Allow user to return to a saved color by clicking on the corresponding cell in listview
     public void setOnItemClickListener()
     {
         lv_j_savedColors.setOnItemClickListener((parent, view, position, id) -> {
